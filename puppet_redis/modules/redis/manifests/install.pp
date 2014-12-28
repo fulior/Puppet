@@ -21,4 +21,8 @@ class redis::install {
     alias => "redis-server_remove",
     require => Package["redis-server"],
   }
+# Shutdown default Redis instance
+  service { "redis-server":
+    ensure => "stopped",
+  }
 }

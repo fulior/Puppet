@@ -1,6 +1,5 @@
 node 'default' {
-  include redis
-	include redis::install
+  include redis::install
 		
   redis::server {'redis01':
     redis_bind_ip      =>  $::ipaddress_eth0,
