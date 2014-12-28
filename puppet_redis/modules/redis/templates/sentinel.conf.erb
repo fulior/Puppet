@@ -1,0 +1,8 @@
+port <%= @sentinel_port -%>
+
+logfile /var/log/redis/<%= @init_script -%>.log
+daemonize yes
+sentinel monitor <%= @redis_master_name -%> <%= @redis_master_ip -%> <%= @redis_master_port -%> 2
+sentinel down-after-milliseconds <%= @redis_master_name -%> 60000
+sentinel failover-timeout <%= @redis_master_name -%> 180000
+sentinel parallel-syncs <%= @redis_master_name -%> 1
