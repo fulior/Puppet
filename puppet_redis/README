@@ -1,0 +1,5 @@
+This repository contains puppet redis module + nodes.pp in manifests directory. I hope that with my comments it's pretty straight forward, so I won't be describing each file here. It's currently designed to work with Ubuntu 12.04 LTS (module uses Ubuntu's PPA repository), module itself currently designed for Debian-like systems (because of the startup scripts), but it shouldn't be hard to add additional templates for Red-Hat-like systems and add RPM repository. Same for replacing current PPA repository with a private repository or a local package - it's enough to modify redis::install class. 
+
+The whole configuration is contained in node definition (nodes.pp). redis::server can configure either a master/single instance or a slave instance, it depends if you decided to use 'redis_master_ip' variable - when used it assumes that you want to deploy a slave instance. redis::sentinel on the other hand requires 'redis_master_ip'.
+
+It's designed with multiple redis and sentinel instances per single host (that was the requirement), so the configuration in nodes.pp may look overly complicated at first.
